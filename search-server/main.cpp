@@ -82,10 +82,6 @@ public:
         return matched_documents;
     }
 
-    double ComputeWordInverseDocumentFreq(const string& word) const {
-        return log(document_count_ * 1.0 / word_to_documents_freqs_.at(word).size());
-    }
-
 private:
 
     map<string, map<int, double>> word_to_documents_freqs_;
@@ -125,6 +121,10 @@ private:
             }
         }
         return query_words;
+    }
+
+    double ComputeWordInverseDocumentFreq(const string& word) const {
+        return log(document_count_ * 1.0 / word_to_documents_freqs_.at(word).size());
     }
 
     vector<Document> FindAllDocuments(const Query& query_words) const {
